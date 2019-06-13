@@ -11,18 +11,21 @@ OR
 Alias: `cache`.
 
 # Table of contents
+- [Cache](#cache)
+- [Installation](#installation)
+- [Table of contents](#table-of-contents)
 - [Usage](#usage)
 - [Available methods](#available-methods)
-    - [Set](#set)
-        - [Examples](#examples)
-    - [Get](#get)
-        - [Examples](#examples)
-    - [Has](#has)
-        - [Examples](#examples)
-    - [Remove](#remove)
-        - [Examples](#examples)
-    - [Clear](#clear)
-        - [Examples](#examples)
+  - [Set](#set)
+    - [Examples](#examples)
+  - [Get](#get)
+    - [Examples](#examples-1)
+  - [Has](#has)
+    - [Examples](#examples-2)
+  - [Remove](#remove)
+    - [Examples](#examples-3)
+  - [Clear](#clear)
+    - [Examples](#examples-4)
 - [Configurations](#configurations)
 - [Constants](#constants)
 
@@ -56,11 +59,11 @@ class HomePage {
 
 This method accepts any type of values, the cache engine will handle it automatically, so if you want to store object, you don't have to `JSON.stringify` it, the package will take care of it.
 
-The `expiresAt` parameter is used to determine until when he value should be stored in.
+The `expiresAt` parameter is used to determine until when the value should be stored in.
 
 > Please note that this method accepts a valid timestamp number, i.e `Date.now()`.
 
-The default value for `expiresAt` is set to **Cache.FOREVER** which mean the value will not be removed from the cache.
+The default value for `expiresAt` is set to **Cache.FOREVER** which mean the value will not be removed from the cache until the user clears the browser history.
 
 There are some [useful constants for cache expiration time](#constants).
 
@@ -80,13 +83,18 @@ let user = {
 cache.set('user', user);
 
 // storing arrays is acceptable as well
-$users = [{
+let users = [{
     name: 'Hasan',
     address: 'Some street address',
 }, {
     name: 'John Doe',
     address: 'Another address',
 }];
+
+cache.set('users', users);
+
+// cache for one hour
+cache.set('accessToken', MyAccessToken, Cache.FOR_ONE_HOUR);11
 ```
 
 ## Get
@@ -102,30 +110,14 @@ If the key doesn't exist, `defaultValue` will be returned instead.
 ```javascript
 let cache = DI.resolve('cache');
 
-let name = cache.get('name'); // hasan
+// if the given key exists
+let name = cache.get('name'); // Hasan
 
+// if the given key doesn't exists, return null
 let age = cache.get('age'); // null
-let email = cache.get('email', 'my-email@sitename.com'); // null
 
-// It can also store objects
-let user = {
-    name: 'Hasan',
-    address: 'Some street address',
-};
-
-cache.set('user', user);
-
-// storing arrays is acceptable as well
-$users = [{
-    name: 'Hasan',
-    address: 'Some street address',
-}, {
-    name: 'John Doe',
-    address: 'Another address',
-}];
-
-// cache for one hour
-cache.set('accessToken', MyAccessToken, Cache.FOR_ONE_HOUR);
+// if the given key doesn't exists, return the given default value instead.
+let email = cache.get('email', 'my-email@sitename.com'); // my-email@sitename.com
 ```
 
 ## Has
@@ -174,15 +166,15 @@ cache.clear();
 ```
 
 # Configurations
-Available configurations for `cache` in [config.js](./../config-js.md).
+Available configurations for `cache` in [Application configurations](https://github.com/falakjs/config).
 
-**Main Configuration key**: `http`
+**Main Configuration key**: `cache`
 
 | key           | Type      | Default value | Description                                                                            |
 | ------------- | --------- | ------------- | -------------------------------------------------------------------------------------- |
-| encryptValues | `Boolean` | **true**      | If set to `true`, any value will be encrypted using the [Crypto](./crypto.md) package. |
+| encryptValues | `Boolean` | **true**      | If set to `true`, any value will be encrypted using the [Crypto](https://github.com/falakjs/crypto) package. |
 
-> It's recommended to set the type of the **encryptionValue** in your `config.js` in the beginning of your application development as it works on all the cached keys.
+> It's recommended to set the type of the **encryptionValue** in your `config.js` in the beginning of your application development as it works on all the cached values.
 
 # Constants
 

@@ -4,8 +4,8 @@ class CacheEngine {
     */
     constructor(crypto) {
         this.crypto = crypto;
-        this.init();
         this.encryptValues = Config.get('cache.encryptValues', true);
+        this.init();
     }
 
     /**

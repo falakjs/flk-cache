@@ -5,7 +5,7 @@
     "dependencies": {
         "flk-crypto": "0.1.3"
     },
-    "keywords": [
+    "keywords": [   
         "cache",
         "localstorage",
         "local storage",
