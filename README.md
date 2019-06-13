@@ -172,7 +172,7 @@ Available configurations for `cache` in [Application configurations](https://git
 
 | key           | Type      | Default value | Description                                                                            |
 | ------------- | --------- | ------------- | -------------------------------------------------------------------------------------- |
-| encryptValues | `Boolean` | **true**      | If set to `true`, any value will be encrypted using the [Crypto](https://github.com/falakjs/crypto) package. |
+| encryptValues | `Boolean` | **true**      | If set to `true`, any value will be encrypted using the [Crypto](https://github.com/falakjs/flk-crypto) package. |
 
 > It's recommended to set the type of the **encryptionValue** in your `config.js` in the beginning of your application development as it works on all the cached values.
 
