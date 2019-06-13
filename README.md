@@ -166,7 +166,7 @@ cache.clear();
 ```
 
 # Configurations
-Available configurations for `cache` in [Application configurations](https://github.com/falakjs/config).
+Available configurations for `cache` in [Application configurations](https://github.com/falakjs/flk-config).
 
 **Main Configuration key**: `cache`
 
