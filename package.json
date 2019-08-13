@@ -2,6 +2,7 @@
     "name": "flk-cache",
     "description": "Cache engine to store data in local storage.",
     "version": "0.1.7",
+    "main": "dist/CacheEngine.js",
     "dependencies": {
         "flk-crypto": "^0.1.3"
     },
